@@ -68,12 +68,17 @@ namespace CastleGrimtol.Project
         Thread.Sleep(100);
 
       }
+      Thread.Sleep(500);
+      Console.WriteLine("");
       Console.WriteLine("");
 
 
       while (Playing)
       {
+
         Console.WriteLine("What do you want to do?");
+        Console.WriteLine("Type \"Help\" for a list of commands");
+        Console.WriteLine("");
 
         string[] input = Console.ReadLine().ToLower().Split(' ');
         Console.Clear();
@@ -89,8 +94,11 @@ namespace CastleGrimtol.Project
           case "go":
             Go(option);
             break;
-          case "take":
-            TakeItem(option);
+          case "look":
+            Look();
+            break;
+          case "help":
+            Help();
             break;
           case "quit":
             Playing = false;
@@ -99,7 +107,6 @@ namespace CastleGrimtol.Project
             Console.WriteLine("UNKNOWN COMMAND");
             break;
         }
-
       }
     }
 
@@ -115,7 +122,10 @@ namespace CastleGrimtol.Project
 
     public void Help()
     {
-
+      Console.WriteLine("Enter \"Go\" and a directions such as: \"North\" \"South\" \"East\" or \"West\"");
+      Console.WriteLine("Enter \"Look\" to see what is in the room.");
+      Console.WriteLine("Enter \"Quit\" to exit the game.");
+      Console.WriteLine("");
     }
 
     public void Go(string direction)
@@ -140,7 +150,24 @@ namespace CastleGrimtol.Project
 
     public void Look()
     {
-      Console.WriteLine($"{CurrentRoom.Description}");
+
+      string lookName = $"You are in {CurrentRoom.Name}";
+      foreach (char letter in lookName)
+      {
+        Console.Write(letter);
+        Thread.Sleep(50);
+      }
+      Console.WriteLine("");
+      Console.WriteLine("");
+
+      string lookDescription = ($"{CurrentRoom.Description}");
+      foreach (char letter in lookDescription)
+      {
+        Console.Write(letter);
+        Thread.Sleep(50);
+      }
+      Console.WriteLine("");
+      Console.WriteLine("");
     }
 
   }

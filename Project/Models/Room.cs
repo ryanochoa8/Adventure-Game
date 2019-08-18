@@ -36,6 +36,7 @@ namespace CastleGrimtol.Project.Models
         return Exits[direction];
       }
       Console.WriteLine("Can't go that way");
+      Console.WriteLine("");
       return this;
     }
 
