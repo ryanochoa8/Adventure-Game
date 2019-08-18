@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using CastleGrimtol.Project.Interfaces;
 using CastleGrimtol.Project.Models;
 
@@ -6,8 +7,10 @@ namespace CastleGrimtol.Project
 {
   public class GameService : IGameService
   {
-    public Room CurrentRoom { get; set; }
+    public IRoom CurrentRoom { get; set; }
     public Player CurrentPlayer { get; set; }
+
+    private bool Playing { get; set; } = true;
 
 
     public void Reset()
@@ -58,8 +61,45 @@ namespace CastleGrimtol.Project
     public void StartGame()
     {
       Setup();
+      string greet = $"Welcome to the Adventure Game";
+      foreach (char letter in greet)
       {
-        System.Console.WriteLine("Welcome to this game");
+        Console.Write(letter);
+        Thread.Sleep(100);
+
+      }
+      Console.WriteLine("");
+
+
+      while (Playing)
+      {
+        Console.WriteLine("What do you want to do?");
+
+        string[] input = Console.ReadLine().ToLower().Split(' ');
+        Console.Clear();
+        string command = input[0];
+        string option = "";
+        if (input.Length > 1)
+        {
+          option = input[1];
+        }
+
+        switch (command)
+        {
+          case "go":
+            Go(option);
+            break;
+          case "take":
+            TakeItem(option);
+            break;
+          case "quit":
+            Playing = false;
+            break;
+          default:
+            Console.WriteLine("UNKNOWN COMMAND");
+            break;
+        }
+
       }
     }
 
@@ -80,7 +120,7 @@ namespace CastleGrimtol.Project
 
     public void Go(string direction)
     {
-
+      CurrentRoom = CurrentRoom.Go(direction);
     }
 
     public void TakeItem(string itemName)
@@ -100,7 +140,7 @@ namespace CastleGrimtol.Project
 
     public void Look()
     {
-
+      Console.WriteLine($"{CurrentRoom.Description}");
     }
 
   }
