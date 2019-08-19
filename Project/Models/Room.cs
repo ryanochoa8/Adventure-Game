@@ -11,10 +11,12 @@ namespace CastleGrimtol.Project.Models
     public string Description { get; set; }
     public List<Item> Items { get; set; }
     public Dictionary<string, IRoom> Exits { get; set; }
+    public string Location { get; set; }
 
 
-    public Room(string name, string description)
+    public Room(string location, string name, string description)
     {
+      Location = location;
       Name = name;
       Description = description;
       Exits = new Dictionary<string, IRoom>();
@@ -29,9 +31,10 @@ namespace CastleGrimtol.Project.Models
         foreach (char travelLetter in traveling)
         {
           Console.Write(travelLetter);
-          Thread.Sleep(100);
+          // Thread.Sleep(100);
+          Thread.Sleep(25);
         }
-        Thread.Sleep(500);
+        // Thread.Sleep(500);
         Console.Clear();
         return Exits[direction];
       }
@@ -40,6 +43,14 @@ namespace CastleGrimtol.Project.Models
       return this;
     }
 
+    //When taking an item be sure the item is in the current room 
+    //before adding it to the player inventory, Also don't forget to 
+    //remove the item from the room it was picked up in
+
+    // public IRoom TakeItem(string itemName)
+    // {
+
+    // }
 
 
   }

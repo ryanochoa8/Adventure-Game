@@ -13,5 +13,6 @@ namespace CastleGrimtol.Project.Interfaces
 
     IRoom Go(string direction);
 
+    string Location { get; set; }
   }
 }
