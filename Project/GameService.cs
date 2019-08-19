@@ -152,6 +152,7 @@ The smell of smoke and mongolian noodles surrounds you as you struggle to compre
 
       while (Playing)
       {
+        Look();
         Console.WriteLine($"What do you want to do {name}?");
         Console.WriteLine("Type \"Help\" for a list of commands");
         Console.WriteLine("");
@@ -265,6 +266,7 @@ The smell of smoke and mongolian noodles surrounds you as you struggle to compre
         Console.Write(letter);
         // Thread.Sleep(25);
       }
+      Console.WriteLine("");
       Console.WriteLine("");
 
       //NOTE This needs to show either "Item (Name:, Description)" when you look around each room, a message telling the user the item has been taken, or nothing if there isn't an item in the room.
