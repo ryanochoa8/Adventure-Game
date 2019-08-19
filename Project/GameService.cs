@@ -254,6 +254,7 @@ The smell of smoke and mongolian noodles surrounds you as you struggle to compre
     public void Inventory()
     {
       //Print the list of items in the players inventory to the console
+      //NOTE probably a Console.WriteLine() and a foreach
     }
 
     public void Look()
