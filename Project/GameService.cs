@@ -43,7 +43,7 @@ namespace CastleGrimtol.Project
       Microwave2.Exits.Add("south", Kitchen);
 
       Drawer.Items.Add(TinFoil);
-      Drawer.Items.Add(Food);
+      Pantry.Items.Add(Food);
 
 
       #region 
