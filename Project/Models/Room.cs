@@ -52,6 +52,9 @@ namespace CastleGrimtol.Project.Models
 
     // }
 
+    //NOTE TakeItem, UseItem, and / or Inventory will go in here
+    // Maybe in the interface too
+
 
   }
 }

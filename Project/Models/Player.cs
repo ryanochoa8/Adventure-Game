@@ -12,5 +12,8 @@ namespace CastleGrimtol.Project.Models
     {
       PlayerName = playerName;
     }
+
+    //NOTE Items, TakeItem, UseItem, and / or Inventory will go in here
+    // Maybe in the interface too
   }
 }
