@@ -241,8 +241,7 @@ The smell of smoke and mongolian noodles surrounds you as you struggle to compre
 
     public void TakeItem(string itemName)
     {
-      //FIXME check if user can take an item from their current room, if so, put it into their inventory, if not, alert them there is nothing to take etc.
-      //REVIEW This isn't working
+      //FIXME FIXED!!! check if user can take an item from their current room, if so, put it into their inventory, if not, alert them there is nothing to take etc.
 
       Item item = CurrentRoom.Items.Find(i => i.Name.ToLower() == itemName.ToLower());
 
