@@ -12,7 +12,7 @@
 <!-- 6. Create your items & add them to the Items list within the room they belong to. -->
 <!-- 7. At the end of setup be sure to set the CurrentRoom to whichever room the player should start in. -->
 <!-- 8. On the room class create a method to handle changing rooms. This method should return a room if one was found at that exit. -->
-9. Create a similar method on the room for returning Items if the user used the 'take' action.
+<!-- 9. Create a similar method on the room for returning Items if the user used the 'take' action. -->
 <!-- 10. Back in the Game class, create methods for:
     - Look (returns the current room description)
     -  Quit (changes a global 'playing' variable to false)
@@ -22,7 +22,7 @@
     -  In the while(playing) loop, prompt the user for input and take in user input
     - Evaluate that input on a switch to determine what action to run -->
 <!-- -  Go: runs the method you created to move from room to room -->
-      - Take: attempts to move an item from the room list into the player inventory
+<!-- - Take: attempts to move an item from the room list into the player inventory -->
       - Use: You will need to write a method on how to handle using the item
 <!-- - Look: run the look method
        - Help: run the health method
