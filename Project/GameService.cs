@@ -70,7 +70,7 @@ namespace CastleGrimtol.Project
     {
       Console.Clear();
 
-      string greet = $"Welcome to this... uhh... adventure? situation? problem?";
+      string greet = $"Welcome to this... uhh... adventure? situation? problem? game?";
       foreach (char letter in greet)
       {
         Console.Write(letter);
@@ -237,6 +237,8 @@ The smell of smoke and mongolian noodles surrounds you as you struggle to compre
       //When taking an item be sure the item is in the current room 
       //before adding it to the player inventory, Also don't forget to 
       //remove the item from the room it was picked up in
+
+      //NOTE This method needs to "checkout" an item from the room that contains that specific item. This should then place the item within the player's inventory
     }
 
     public void UseItem(string itemName)
@@ -244,6 +246,8 @@ The smell of smoke and mongolian noodles surrounds you as you struggle to compre
       //No need to Pass a room since Items can only be used in the CurrentRoom
       //Make sure you validate the item is in the room or player inventory before
       //being able to use the item
+
+      //NOTE This method needs to be used in a room that is locked. Using the item should flip the "isLocked" bool allowing you to exit the room. This also needs to remove the item from your inventory.
     }
 
     public void Inventory()
@@ -263,22 +267,9 @@ The smell of smoke and mongolian noodles surrounds you as you struggle to compre
       }
       Console.WriteLine("");
 
-      //NOTE will probably have to go on the room, player, and item class
-      // int itemCount = 1;
-      // if (onlyAvailable)
-      // {
-      //   Items = Items.FindAll(i => i.Available);
-      // }
-      // foreach (var item in Items)
-      // {
-      //   if (!item.Available)
-      //   {
-      //     Console.ForegroundColor = ConsoleColor.Red;
-      //   }
-      //   Console.WriteLine($"Item: {Item.Name} Description: {Item.Description}");
-      //   itemCount++;
+      //NOTE This needs to show either "Item (Name:, Description)" when you look around each room, a message telling the user the item has been taken, or nothing if there isn't an item in the room.
 
-      // }
+
     }
 
   }
