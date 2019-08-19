@@ -263,7 +263,7 @@ The smell of smoke and mongolian noodles surrounds you as you struggle to compre
       }
       Console.WriteLine("");
 
-
+      //NOTE will probably have to go on the room, player, and item class
       // int itemCount = 1;
       // if (onlyAvailable)
       // {
