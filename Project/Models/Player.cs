@@ -11,6 +11,7 @@ namespace CastleGrimtol.Project.Models
     public Player(string playerName)
     {
       PlayerName = playerName;
+      Inventory = new List<Item>();
     }
 
     //NOTE Items, TakeItem, UseItem, and / or Inventory will go in here

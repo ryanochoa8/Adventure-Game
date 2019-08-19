@@ -22,6 +22,8 @@ namespace CastleGrimtol.Project
     {
       Console.Clear();
 
+
+      // Rooms
       Room Microwave = new Room("Microwave", "inside the microwave.", "Confused and miniature, you're at a loss for words. Your hands are shaking as you stand there in disbelief as you've just been shrunk to the size of a salt shaker.");
       Room Drawer = new Room("Kitchen Drawers", "at the kitchen storage drawer.", "After heading across the desolate plains of the kitchen floor, you stumble upon four drawers stacked upon each other containing various kitchen items in each one. Your memory is hazy in regard to the contents within each one. As you climb up one by one, you see that the top drawer is slightly cracked open. Just wide enough for you to squeeze through. With sandwich bags and saran wrap obstructing your view, it's difficult to tell what's in here.");
       Room Pantry = new Room("Pantry", "at the pantry.", "After a few hours of walking with the conductive tin foil underneath your arm, you squeeze underneath the doorway. It's pitch black and your stomach is grumbling.");
@@ -29,9 +31,10 @@ namespace CastleGrimtol.Project
       Room Microwave2 = new Room("Microwave", "at the microwave again.", "After a grueling trip across the plains you climb to the top of the kitchen counter. You make your way to the back side of the microwave and observe that it's charred with clear evidence of a short circuit. One of the wires has split, but appears to be repairable.");
       Room Kitchen = new Room("Kitchen", "at the end of the game!", "ZZZzzzzAAAaaaAAAAPPPPPpppPPPPP!!! Your body has been restored to its original size! You have survived this journey successfully! Congratulations on your expedition throughout the kitchen. You might want to think about getting your microwave replaced though. Anyways, CONGRATS!");
 
-      Item TinFoil = new Item("Tin Foil", "There's something shiny sitting in the back corner of the drawer.");
+      Item Foil = new Item("Foil", "There's something shiny sitting in the back corner of the drawer.");
       Item Food = new Item("Food", "The horid smell of dog food kibbles fill your nostrils as you venture deeper into the pantry. Desperate times call for desperate measures...");
 
+      // Exits
       Microwave.Exits.Add("east", Drawer);
       Drawer.Exits.Add("west", Microwave);
       Drawer.Exits.Add("north", Pantry);
@@ -42,7 +45,8 @@ namespace CastleGrimtol.Project
       Microwave2.Exits.Add("north", KitchenFloor);
       Microwave2.Exits.Add("south", Kitchen);
 
-      Drawer.Items.Add(TinFoil);
+      // Items in room
+      Drawer.Items.Add(Foil);
       Pantry.Items.Add(Food);
 
 
@@ -152,7 +156,6 @@ The smell of smoke and mongolian noodles surrounds you as you struggle to compre
 
       while (Playing)
       {
-        Look();
         Console.WriteLine($"What do you want to do {name}?");
         Console.WriteLine("Type \"Help\" for a list of commands");
         Console.WriteLine("");
@@ -215,6 +218,8 @@ The smell of smoke and mongolian noodles surrounds you as you struggle to compre
       }
       Thread.Sleep(1000);
 
+      //NOTE Make sure that you implement a way to lose the game
+
     }
 
     public void Help()
@@ -223,6 +228,7 @@ The smell of smoke and mongolian noodles surrounds you as you struggle to compre
       Console.WriteLine("Enter \"Look\" to see what is in the room.");
       Console.WriteLine("Enter \"Take\" and the name of the item.");
       Console.WriteLine("Enter \"Use\" and the name of the item");
+      Console.WriteLine("Enter \"Stash\" to see a list of your inventory.");
       Console.WriteLine("Enter \"Quit\" to exit the game.");
       Console.WriteLine("Enter \"Reset\" to start from the beginning.");
       Console.WriteLine("");
@@ -235,6 +241,26 @@ The smell of smoke and mongolian noodles surrounds you as you struggle to compre
 
     public void TakeItem(string itemName)
     {
+      //FIXME check if user can take an item from their current room, if so, put it into their inventory, if not, alert them there is nothing to take etc.
+      //REVIEW This isn't working
+
+      Item item = CurrentRoom.Items.Find(i => i.Name.ToLower() == itemName.ToLower());
+
+      if (item != null)
+      {
+        CurrentPlayer.Inventory.Add(item);
+        CurrentRoom.Items.Remove(item);
+        Console.WriteLine($"The {item.Name} has been added to your inventory");
+        Inventory();
+
+      }
+      else
+      {
+        Console.WriteLine("There isn't an item to take.");
+      }
+
+
+
       //When taking an item be sure the item is in the current room 
       //before adding it to the player inventory, Also don't forget to 
       //remove the item from the room it was picked up in
@@ -244,6 +270,8 @@ The smell of smoke and mongolian noodles surrounds you as you struggle to compre
 
     public void UseItem(string itemName)
     {
+      //FIXME check if user can use item in this room, if so activate it to change the room state, then remove it from inventory (if you want to)
+
       //No need to Pass a room since Items can only be used in the CurrentRoom
       //Make sure you validate the item is in the room or player inventory before
       //being able to use the item
@@ -255,13 +283,22 @@ The smell of smoke and mongolian noodles surrounds you as you struggle to compre
     {
       //Print the list of items in the players inventory to the console
       //NOTE probably a Console.WriteLine() and a foreach
+      Console.WriteLine($@"{CurrentPlayer.PlayerName}'s Inventory:
+");
+      foreach (var playerItem in CurrentPlayer.Inventory)
+      {
+        Console.WriteLine($@"{playerItem.Name}
+");
+      }
     }
 
     public void Look()
     {
+      //FIXME FIXED!!! check room state&/ items available
       Console.WriteLine($"You've arrived {CurrentRoom.Name}");
       Console.WriteLine("");
       string lookDescription = ($"{CurrentRoom.Description}");
+
       foreach (char letter in lookDescription)
       {
         Console.Write(letter);
@@ -270,10 +307,12 @@ The smell of smoke and mongolian noodles surrounds you as you struggle to compre
       Console.WriteLine("");
       Console.WriteLine("");
 
-      //NOTE This needs to show either "Item (Name:, Description)" when you look around each room, a message telling the user the item has been taken, or nothing if there isn't an item in the room.
 
-
+      foreach (var item in CurrentRoom.Items)
+      {
+        Console.WriteLine($"{item.Description}. It's {item.Name}.");
+        Console.WriteLine("");
+      }
     }
-
   }
 }
