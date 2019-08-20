@@ -8,11 +8,13 @@ namespace CastleGrimtol.Project.Interfaces
   {
     string Name { get; set; }
     string Description { get; set; }
+    string UnlockedDescription { get; set; }
     List<Item> Items { get; set; }
     Dictionary<string, IRoom> Exits { get; set; }
 
     IRoom Go(string direction);
 
     string Location { get; set; }
+    bool IsLocked { get; set; }
   }
 }

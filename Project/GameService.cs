@@ -24,15 +24,62 @@ namespace CastleGrimtol.Project
 
 
       // Rooms
-      Room Microwave = new Room("Microwave", "inside the microwave.", "Confused and miniature, you're at a loss for words. Your hands are shaking as you stand there in disbelief as you've just been shrunk to the size of a salt shaker.");
-      Room Drawer = new Room("Kitchen Drawers", "at the kitchen storage drawer.", "After heading across the desolate plains of the kitchen floor, you stumble upon four drawers stacked upon each other containing various kitchen items in each one. Your memory is hazy in regard to the contents within each one. As you climb up one by one, you see that the top drawer is slightly cracked open. Just wide enough for you to squeeze through. With sandwich bags and saran wrap obstructing your view, it's difficult to tell what's in here.");
-      Room Pantry = new Room("Pantry", "at the pantry.", "After a few hours of walking with the conductive tin foil underneath your arm, you squeeze underneath the doorway. It's pitch black and your stomach is grumbling.");
-      Room KitchenFloor = new Room("Desolate Kitchen Plains", "at the desolate kitchen floor plains.", "There's not much for you to do here and you need to keep moving. The weight of the tin foil underneath your arm is getting heavier and heavier. The after taste of kibbles are causing you to become nauseous and sweat is collecting around your eyes limiting your vision. As the shadows grow across the kitchen floor plains, the sunlight begins to fade from the windows.");
-      Room Microwave2 = new Room("Microwave", "at the microwave again.", "After a grueling trip across the plains you climb to the top of the kitchen counter. You make your way to the back side of the microwave and observe that it's charred with clear evidence of a short circuit. One of the wires has split, but appears to be repairable.");
-      Room Kitchen = new Room("Kitchen", "at the end of the game!", "ZZZzzzzAAAaaaAAAAPPPPPpppPPPPP!!! Your body has been restored to its original size! You have survived this journey successfully! Congratulations on your expedition throughout the kitchen. You might want to think about getting your microwave replaced though. Anyways, CONGRATS!");
+      Room Microwave = new Room("Microwave", "inside the microwave.", @"Confused and miniature, you're at a loss for words. 
+Your hands are shaking as you stand there in disbelief as 
+you've just been shrunk to the size of a salt shaker.", false, "");
 
-      Item Foil = new Item("Foil", "There's something shiny sitting in the back corner of the drawer.");
-      Item Food = new Item("Food", "The horid smell of dog food kibbles fill your nostrils as you venture deeper into the pantry. Desperate times call for desperate measures...");
+      Room Drawer = new Room("Kitchen Drawers", "at the kitchen storage drawer.", @"After heading across the desolate plains of the kitchen floor, 
+you stumble upon four drawers stacked upon each other containing 
+various kitchen items in each one. 
+
+Your memory is hazy in regard to the contents within each one.
+
+As you climb up one by one, you see that the top drawer is 
+slightly cracked open. 
+
+Just wide enough for you to squeeze through. With sandwich bags and 
+saran wrap obstructing your view, it's difficult to tell what's in here.", false, "");
+
+      Room Pantry = new Room("Pantry", "at the pantry.", @"After a few hours of fighting off flies and spiders with 
+the reinforced foil you picked up, you squeeze underneath the doorway. 
+
+It's pitch black and your stomach is grumbling.", true, "You have a full belly and can continue on!");
+
+      Room KitchenFloor = new Room("Desolate Kitchen Plains", "at the desolate kitchen floor plains.", @"There's not much for you to do here and you need to keep moving. 
+
+The weight of the tin foil underneath your arm is 
+getting heavier and heavier. 
+
+The after taste of kibbles are causing you to become 
+nauseous and sweat is collecting around your eyes 
+limiting your vision. 
+
+As the shadows grow across the kitchen floor plains, 
+the sunlight begins to fade from the windows.", false, "");
+
+      Room Microwave2 = new Room("Microwave", "at the microwave again.", @"After a grueling trip across the plains you climb to 
+the top of the kitchen counter. 
+
+You make your way to the back side of the microwave and 
+observe that it's charred with clear evidence of a short circuit. 
+
+One of the wires has split, but appears to be repairable.", true, "With the foil in place and the microwave set to 5 seconds, you think to yourself, \"Hmmmm... I should probably hit the start button and \"go forward\" (hint hint) right as the timer hits zero.\"");
+
+      Room Kitchen = new Room("Kitchen", "at the end of the game!", @"ZZZzzzzAAAaaaAAAAPPPPPpppPPPPP!!! The microwave hits zero and 
+your body is restored to its original size! You have survived 
+this journey successfully! 
+
+Congratulations on your expedition throughout the kitchen. 
+
+You might want to think about getting your microwave replaced though. 
+
+Anyways, CONGRATS!", false, "");
+
+      Item Foil = new Item("foil", "There's something shiny sitting in the back corner of the drawer.");
+      Item Food = new Item("food", @"
+The horid smell of dog food kibbles fill your nostrils as 
+you venture deeper into the pantry. Desperate times call 
+for desperate measures...");
 
       // Exits
       Microwave.Exits.Add("east", Drawer);
@@ -43,7 +90,7 @@ namespace CastleGrimtol.Project
       KitchenFloor.Exits.Add("east", Pantry);
       KitchenFloor.Exits.Add("south", Microwave2);
       Microwave2.Exits.Add("north", KitchenFloor);
-      Microwave2.Exits.Add("south", Kitchen);
+      Microwave2.Exits.Add("forward", Kitchen);
 
       // Items in room
       Drawer.Items.Add(Foil);
@@ -79,7 +126,6 @@ namespace CastleGrimtol.Project
       {
         Console.Write(letter);
         Thread.Sleep(65);
-
       }
       Thread.Sleep(500);
       Console.WriteLine("");
@@ -108,59 +154,74 @@ namespace CastleGrimtol.Project
 
       string introduction = ($@"It's a beautiful day in Boise, Idaho.
 
-The temperature is around 80 degrees and you've been stuck inside cleaning all day in preparation for guests to come over for dinner tonight.
+The temperature is around 80 degrees and you've been stuck inside 
+cleaning all day in preparation for guests to come over for dinner tonight.
 
-Since you'll be staying home for the rest of the day, you decide to take your dog out for a quick walk around the park to get him and yourself some exercise before the festivities tonight.
+Since you'll be staying home for the rest of the day, you decide to take your 
+dog out for a quick walk around the park to get him and yourself some exercise 
+before the festivities tonight.
 
-After getting back, you realize it's only noon. You decide it would be wise to have a quick meal before you start cooking and setting up. The leftover Mongolian BBQ sitting in your fridge appears to be the best and quickest option.
+After getting back, you realize it's only noon. You decide it would be wise 
+to have a quick meal before you start cooking and setting up. 
+The leftover Mongolian BBQ sitting in your fridge appears to be the best and 
+quickest option.
 
-Looking into the fridge you grab the leftover Mongolian BBQ and a bowl from the cupboard. The chunk of noodles are plopped into a bowl maintaining the shape of the to-go box.
+Looking into the fridge you grab the leftover Mongolian BBQ and a bowl from the cupboard. 
+The chunk of noodles are plopped into a bowl maintaining the shape of the to-go box.
 
-Rather than eating this cold brick of starch like a savage, you decide to go up to the microwave and reheat the noodles.
+Rather than eating this cold brick of starch like a savage, 
+you decide to go up to the microwave and reheat the noodles.
 ");
       foreach (char letter in introduction)
       {
         Console.Write(letter);
-        // Thread.Sleep(40);
+        Thread.Sleep(30);
 
       }
-      // Thread.Sleep(1500);
+      Thread.Sleep(5000);
       Console.WriteLine("");
       Console.WriteLine("");
 
 
       string introduction2 = ($@"
-ZZZZZZrrrrrrrrrrrrRRRRmmmMMMMMMMMMMMMMM CRACK PEW PEW PEW!!!
+ZZZrrrRRRRmmmMMMMMMM!!! CRACK! PEW! PEW! PEW!!!
 ");
       foreach (char letter in introduction2)
       {
         Console.Write(letter);
-        // Thread.Sleep(100);
+        Thread.Sleep(100);
       }
-      // Thread.Sleep(500);
+      Thread.Sleep(500);
       Console.WriteLine("");
       Console.WriteLine("");
 
       string introduction3 = ($@"
-The smell of smoke and mongolian noodles surrounds you as you struggle to comprehend what just happened.
+The smell of smoke and mongolian noodles surrounds you as 
+you struggle to comprehend what just happened.
 ");
       foreach (char letter in introduction3)
       {
         Console.Write(letter);
-        // Thread.Sleep(40);
+        Thread.Sleep(40);
       }
-      // Thread.Sleep(500);
+      Thread.Sleep(500);
       Console.WriteLine("");
       Console.WriteLine("");
 
 
       while (Playing)
       {
+        if (CurrentRoom.Location == "Kitchen")
+        {
+          Look();
+        }
+
+        Console.WriteLine($"Current Location: {CurrentRoom.Location}");
+        Console.WriteLine("");
         Console.WriteLine($"What do you want to do {name}?");
-        Console.WriteLine("Type \"Help\" for a list of commands");
+        Console.WriteLine("Type \"Help\" for a list of commands or \"Look\" to observe your surroundings.");
         Console.WriteLine("");
         GetUserInput();
-
       }
     }
 
@@ -224,19 +285,69 @@ The smell of smoke and mongolian noodles surrounds you as you struggle to compre
 
     public void Help()
     {
-      Console.WriteLine("Enter \"Go\" and a directions such as: \"North\" \"South\" \"East\" or \"West\".");
+      Console.WriteLine("Enter the command \"Go\" + a directions such as: \"North\" \"South\" \"East\" or \"West\". (e.g. \"go north\"");
+      Console.WriteLine("");
       Console.WriteLine("Enter \"Look\" to see what is in the room.");
+      Console.WriteLine("");
       Console.WriteLine("Enter \"Take\" and the name of the item.");
+      Console.WriteLine("");
       Console.WriteLine("Enter \"Use\" and the name of the item");
+      Console.WriteLine("");
       Console.WriteLine("Enter \"Stash\" to see a list of your inventory.");
+      Console.WriteLine("");
       Console.WriteLine("Enter \"Quit\" to exit the game.");
+      Console.WriteLine("");
       Console.WriteLine("Enter \"Reset\" to start from the beginning.");
+      Console.WriteLine("");
+      Console.WriteLine("");
+      Console.WriteLine("");
+      Console.WriteLine("");
       Console.WriteLine("");
     }
 
+
+    //TODO FIXED!!! This is where you left off
     public void Go(string direction)
     {
-      CurrentRoom = CurrentRoom.Go(direction);
+      if (CurrentRoom.Location == "Kitchen Drawers" && direction == "north" && CurrentPlayer.Inventory.Count == 0)
+      {
+        Console.Write("Ooof. You didn't have the proper tools to fight your way to the pantry...");
+        string defeat = @" You have died.";
+        foreach (char letter in defeat)
+        {
+          Console.Write(letter);
+          Thread.Sleep(150);
+        }
+        Thread.Sleep(5000);
+        Console.WriteLine("");
+        Quit();
+      }
+      else if (CurrentRoom.IsLocked == true)
+      {
+        Console.WriteLine("You need to use an item before you can continue on.");
+      }
+      else
+      {
+        CurrentRoom = CurrentRoom.Go(direction);
+      }
+
+
+      // Item item = CurrentRoom.Items.Find(i => i.Name.ToLower() == itemName.ToLower());
+      // if (CurrentRoom.Name == "Desolate Kitchen Plains" && CurrentPlayer.Inventory.Contains(Food))
+      // {
+      //   Console.WriteLine("You have died of starvation... Better luck next time!");
+      //   Thread.Sleep(6000);
+      //   Reset();
+      // }
+      // else if (CurrentRoom.Name == "Microwave" && CurrentPlayer.Inventory.!Contains(Food))
+      // {
+      //   Console.WriteLine("You do not have the qualified equipment to move on. It would be too dangerous to go back. You are stranded... Better luck next time!");
+      //   Thread.Sleep(6000);
+      //   Reset();
+      // }
+      // else
+      // {
+      // }
     }
 
     public void TakeItem(string itemName)
@@ -269,7 +380,23 @@ The smell of smoke and mongolian noodles surrounds you as you struggle to compre
 
     public void UseItem(string itemName)
     {
-      //FIXME check if user can use item in this room, if so activate it to change the room state, then remove it from inventory (if you want to)
+
+      Item item = CurrentPlayer.Inventory.Find(i => i.Name.ToLower() == itemName.ToLower());
+      if (CurrentRoom.IsLocked == true)
+      {
+        CurrentPlayer.Inventory.Remove(item);
+        Console.Clear();
+        Console.WriteLine($"You've used the {item.Name}.");
+        CurrentRoom.Description = CurrentRoom.UnlockedDescription;
+        Console.WriteLine($"{CurrentRoom.Description}");
+        CurrentRoom.IsLocked = false;
+      }
+      else
+      {
+        Console.WriteLine("You can't use that here.");
+      }
+
+      //FIXME FIXED!!! check if user can use item in this room, if so activate it to change the room state, then remove it from inventory (if you want to)
 
       //No need to Pass a room since Items can only be used in the CurrentRoom
       //Make sure you validate the item is in the room or player inventory before
@@ -282,12 +409,21 @@ The smell of smoke and mongolian noodles surrounds you as you struggle to compre
     {
       //Print the list of items in the players inventory to the console
       //NOTE probably a Console.WriteLine() and a foreach
-      Console.WriteLine($@"{CurrentPlayer.PlayerName}'s Inventory:
-");
-      foreach (var playerItem in CurrentPlayer.Inventory)
+      if (CurrentPlayer.Inventory.Count == 0)
       {
-        Console.WriteLine($@"{playerItem.Name}
+        Console.WriteLine($@"{CurrentPlayer.PlayerName}'s Inventory:
+There is nothing in your inventory
 ");
+      }
+      else
+      {
+        Console.WriteLine($@"{CurrentPlayer.PlayerName}'s Inventory:
+");
+        foreach (var playerItem in CurrentPlayer.Inventory)
+        {
+          Console.WriteLine($@"{playerItem.Name}
+");
+        }
       }
     }
 
@@ -301,7 +437,7 @@ The smell of smoke and mongolian noodles surrounds you as you struggle to compre
       foreach (char letter in lookDescription)
       {
         Console.Write(letter);
-        // Thread.Sleep(25);
+        Thread.Sleep(25);
       }
       Console.WriteLine("");
       Console.WriteLine("");
@@ -309,7 +445,7 @@ The smell of smoke and mongolian noodles surrounds you as you struggle to compre
 
       foreach (var item in CurrentRoom.Items)
       {
-        Console.WriteLine($"{item.Description}. It's {item.Name}.");
+        Console.WriteLine($"You've spotted something! {item.Description}. It's {item.Name}.");
         Console.WriteLine("");
       }
     }

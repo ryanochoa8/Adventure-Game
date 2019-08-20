@@ -9,18 +9,22 @@ namespace CastleGrimtol.Project.Models
   {
     public string Name { get; set; }
     public string Description { get; set; }
+    public string UnlockedDescription { get; set; }
     public List<Item> Items { get; set; }
     public Dictionary<string, IRoom> Exits { get; set; }
     public string Location { get; set; }
+    public bool IsLocked { get; set; }
 
 
-    public Room(string location, string name, string description)
+    public Room(string location, string name, string description, bool isLocked, string unlockedDescription)
     {
       Location = location;
       Name = name;
       Description = description;
+      UnlockedDescription = unlockedDescription;
       Exits = new Dictionary<string, IRoom>();
       Items = new List<Item>();
+      IsLocked = isLocked;
     }
 
     public IRoom Go(string direction)
@@ -31,10 +35,10 @@ namespace CastleGrimtol.Project.Models
         foreach (char travelLetter in traveling)
         {
           Console.Write(travelLetter);
-          // Thread.Sleep(100);
-          Thread.Sleep(25);
+          Thread.Sleep(100);
+          // Thread.Sleep(25);
         }
-        // Thread.Sleep(500);
+        Thread.Sleep(500);
         Console.Clear();
         return Exits[direction];
       }
